@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionPath AI - Design Your Future</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-icon">🔮</span> VisionPath AI
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="icon sun">☀️</span>
+                <span class="icon moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div style="text-align:center;">
+            <div class="spinner"></div>
+            <p class="loading-text">Analyzing your profile...</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="glass-card">
+
+            <!-- Hero Section -->
+            <div class="hero">
+                <span class="hero-icon">🚀</span>
+                <h1>VisionPath AI</h1>
+                <p>Design Your Future with AI — Answer a few questions and discover your dream lifestyle potential.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar-fill" style="width: 33.33%;"></div>
+                <div class="step-indicator">
+                    <div class="step-circle active">1</div>
+                    <span class="step-label active">Personal</span>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">Skills</span>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Dreams</span>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form action="/predict" method="POST" id="mainForm">
+
+                <!-- Step 1: Personal Info -->
+                <div class="form-section active">
+                    <div class="section-title">
+                        <span class="icon">👤</span> Personal Information
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><span class="label-icon">🎂</span> Age</label>
+                            <input type="number" name="Age" class="form-input" placeholder="e.g. 22" required min="16" max="60">
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">🎓</span> Education</label>
+                            <select name="Education" class="form-select" required>
+                                <option value="" disabled selected>Select your education</option>
+                                <option>B.Tech</option>
+                                <option>BCA</option>
+                                <option>B.Sc</option>
+                                <option>MBA</option>
+                                <option>MCA</option>
+                                <option>M.Tech</option>
+                                <option>Diploma</option>
+                                <option>12th</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">💼</span> Experience (Years)</label>
+                            <input type="number" name="Experience" class="form-input" placeholder="e.g. 2" required min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">💰</span> Savings Goal (₹)</label>
+                            <input type="number" name="SavingsGoal" class="form-input" placeholder="e.g. 500000" required min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Skills -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="icon">⚡</span> Skills Proficiency
+                    </div>
+                    <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Rate your skills from 0 (None) to 10 (Expert)</p>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><span class="label-icon">🐍</span> Python</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="Python" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">🗄️</span> SQL</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="SQL" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">🤖</span> Machine Learning</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="MachineLearning" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">☕</span> Java</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="Java" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">🌐</span> HTML</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="HTML" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">📜</span> JavaScript</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="JavaScript" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">💬</span> Communication</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="Communication" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">👑</span> Leadership</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="Leadership" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label><span class="label-icon">🧩</span> Problem Solving</label>
+                            <div class="skill-slider-container">
+                                <input type="range" name="ProblemSolving" class="skill-slider" min="0" max="10" value="0">
+                                <span class="skill-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Dream Career -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="icon">🌟</span> Your Dream Goals
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><span class="label-icon">🎯</span> Dream Career</label>
+                            <select name="DreamCareer" class="form-select" required>
+                                <option value="" disabled selected>Choose your dream career</option>
+                                <option>Software Engineer</option>
+                                <option>Data Analyst</option>
+                                <option>Data Scientist</option>
+                                <option>AI Engineer</option>
+                                <option>Cybersecurity Analyst</option>
+                                <option>Cloud Engineer</option>
+                                <option>Web Developer</option>
+                                <option>UI UX Designer</option>
+                                <option>Product Manager</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">💵</span> Dream Salary (LPA)</label>
+                            <input type="number" name="DreamSalaryLPA" class="form-input" placeholder="e.g. 15" required min="0" max="200">
+                        </div>
+                        <div class="form-group">
+                            <label><span class="label-icon">🏢</span> Work Style</label>
+                            <select name="WorkStyle" class="form-select" required>
+                                <option value="" disabled selected>Select preference</option>
+                                <option>Remote</option>
+                                <option>Hybrid</option>
+                                <option>Office</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display:none;">← Back</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next →</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none;">
+                        🔮 Predict My Future
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeScape AI - Career Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-icon">🔮</span> VisionPath AI
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="icon sun">☀️</span>
+                <span class="icon moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="glass-card">
+
+            <!-- Hero -->
+            <div class="hero">
+                <span class="hero-icon">📋</span>
+                <h1>LifeScape AI Report</h1>
+                <p>Comprehensive AI-powered career analysis report.</p>
+            </div>
+
+            <!-- User Details Section -->
+            <div class="section-title">
+                <span class="icon">👤</span> User Details
+            </div>
+            <div class="result-details">
+                <div class="detail-item">
+                    <span class="detail-label">🎂 Age</span>
+                    <span class="detail-value">{{ age }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">🎓 Education</span>
+                    <span class="detail-value">{{ education }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">💼 Experience</span>
+                    <span class="detail-value">{{ experience }} Years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">🎯 Dream Career</span>
+                    <span class="detail-value">{{ career }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">💰 Expected Salary</span>
+                    <span class="detail-value">₹{{ salary }} LPA</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">🏢 Work Style</span>
+                    <span class="detail-value">{{ workstyle }}</span>
+                </div>
+            </div>
+
+            <!-- Prediction Section -->
+            <div class="section-title" style="margin-top: 30px;">
+                <span class="icon">🤖</span> AI Prediction
+            </div>
+
+            <div class="result-badge 
+                {% if prediction == 'Achievable' %}achievable
+                {% elif prediction == 'Challenging' %}challenging
+                {% else %}ambitious
+                {% endif %}" style="margin: 20px auto;">
+                <span>
+                    {% if prediction == 'Achievable' %}✅
+                    {% elif prediction == 'Challenging' %}⚠️
+                    {% else %}🚀
+                    {% endif %}
+                </span>
+                {{ prediction }}
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="result-progress">
+                <div class="progress-label">
+                    <span>Feasibility Score</span>
+                    <span>
+                        {% if prediction == 'Achievable' %}85%
+                        {% elif prediction == 'Challenging' %}55%
+                        {% else %}30%
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill 
+                        {% if prediction == 'Achievable' %}achievable
+                        {% elif prediction == 'Challenging' %}challenging
+                        {% else %}ambitious
+                        {% endif %}" 
+                        data-width="{% if prediction == 'Achievable' %}85%{% elif prediction == 'Challenging' %}55%{% else %}30%{% endif %}"
+                        style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Suggestion -->
+            <div class="section-title" style="margin-top: 30px;">
+                <span class="icon">💡</span> AI Suggestion
+            </div>
+            <div class="detail-item" style="padding: 20px; margin-top: 10px;">
+                <p style="font-size: 15px; line-height: 1.8; color: var(--text-secondary);">
+                    {% if prediction == "Achievable" %}
+                        🎉 Your goal is realistic! Keep learning and applying for internships. Your current profile aligns well with your dream career path. Focus on gaining practical experience through projects and networking.
+                    {% elif prediction == "Challenging" %}
+                        📈 You're close! Improve your technical skills, build projects, and gain experience. Consider upskilling in relevant technologies and seeking mentorship to bridge the gap.
+                    {% else %}
+                        🚀 Your dream is ambitious! Focus on building a stronger portfolio and developing in-demand skills. Start with smaller milestones and work your way up. Consistency is key!
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-group" style="margin-top: 30px;">
+                <a href="/form" class="btn btn-primary">
+                    🔄 Analyze Again
+                </a>
+                <a href="/" class="btn btn-secondary">
+                    🏠 Home
+                </a>
+            </div>
+
+            <p style="margin-top: 25px; font-size: 13px; color: var(--text-muted); text-align: center;">
+                💡 Powered by VisionPath AI — Design Your Future with Intelligence
+            </p>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
